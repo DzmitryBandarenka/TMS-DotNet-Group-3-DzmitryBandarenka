@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NBRBCurrencyCore
+namespace TMS.Nbrb.Core
 {
     public class Class1
     {

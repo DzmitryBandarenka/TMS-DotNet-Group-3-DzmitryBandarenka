@@ -77,7 +77,7 @@ namespace TMS.Nbrb.ConsoleApp
                                 Console.WriteLine(rate.Cur_ID + " " + rate.Cur_Abbreviation + " " + rate.Cur_Name + " " + rate.Cur_OfficialRate);
                                 string writeToFile = rate.Cur_ID + " " + rate.Cur_Abbreviation + " " + rate.Cur_Name + " " + rate.Cur_OfficialRate;
                                 Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                Console.WriteLine(amount + " "+ rate.Cur_Abbreviation + " = " + Convert.ToDecimal(rate.Cur_OfficialRate)*amount + " BYN");
+                                Console.WriteLine(amount + " " + rate.Cur_Abbreviation + " = " + Convert.ToDecimal(rate.Cur_OfficialRate) / rate.Cur_Scale * amount + " BYN");
                                 Console.ResetColor();
                                 fileService.WriteToFileAsync(writeToFile);
                             }

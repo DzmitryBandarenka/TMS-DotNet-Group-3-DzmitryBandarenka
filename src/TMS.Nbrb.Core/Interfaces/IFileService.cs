@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TMS.Nbrb.Core.Interfeces
+namespace TMS.Nbrb.Core.Interfaces
 {
     public interface IFileService
     {

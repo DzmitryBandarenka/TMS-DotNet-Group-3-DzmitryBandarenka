@@ -17,7 +17,11 @@ namespace TMS.Nbrb.Core.Services
 
             return currency;
         }
-
+        /// <summary>
+        /// Получить курсы валют.
+        /// </summary>
+        /// <param name="code">код валюты</param>
+        /// <returns></returns>
         public async Task<Rates> GetRatesAsync(string code) {
             var rate = await Constants.UrlApiRates
              .AppendPathSegment(code)

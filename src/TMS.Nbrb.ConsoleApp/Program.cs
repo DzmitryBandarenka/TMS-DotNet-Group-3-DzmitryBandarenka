@@ -45,11 +45,7 @@ namespace TMS.Nbrb.ConsoleApp
 
                             try
                             {
-                                string code = Console.ReadLine();
-                                var rate = requestService.GetRatesAsync(code).GetAwaiter().GetResult();
-                                Console.WriteLine(rate.Cur_ID + " " + rate.Cur_Abbreviation + " " + rate.Cur_Name + " " + rate.Cur_OfficialRate);
-                                string writeToFile = rate.Cur_ID + " " + rate.Cur_Abbreviation + " " + rate.Cur_Name + " " + rate.Cur_OfficialRate;
-                                fileService.WriteToFileAsync(writeToFile);
+                                Services.ShowCurrencyAsync(requestService, fileService).GetAwaiter().GetResult();
                             }
                             catch (FlurlHttpTimeoutException)
                             {
@@ -75,17 +71,7 @@ namespace TMS.Nbrb.ConsoleApp
                         {
                              try
                             {
-                                Console.WriteLine("Enter amount:\n");
-                                decimal amount = Convert.ToDecimal(Console.ReadLine());
-                                Console.WriteLine("Add code currency:\n");
-                                string code = Console.ReadLine();
-                                var rate = requestService.GetRatesAsync(code).GetAwaiter().GetResult();
-                                Console.WriteLine(rate.Cur_ID + " " + rate.Cur_Abbreviation + " " + rate.Cur_Name + " " + rate.Cur_OfficialRate);
-                                string writeToFile = rate.Cur_ID + " " + rate.Cur_Abbreviation + " " + rate.Cur_Name + " " + rate.Cur_OfficialRate;
-                                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                Console.WriteLine(amount + " " + rate.Cur_Abbreviation + " = " + Convert.ToDecimal(rate.Cur_OfficialRate) / rate.Cur_Scale * amount + " BYN");
-                                Console.ResetColor();
-                                fileService.WriteToFileAsync(writeToFile);
+                                Services.ShowConvertAsync(requestService, fileService).GetAwaiter().GetResult();
                             }
                             catch (FlurlHttpTimeoutException)
                             {

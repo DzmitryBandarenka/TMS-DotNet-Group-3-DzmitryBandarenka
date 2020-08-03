@@ -4,6 +4,9 @@ using System.Text;
 
 namespace TMS.Nbrb.Core.Models
 {
+    /// <summary>
+    /// Валюта
+    /// </summary>
     public class Currency
     {
     public int Cur_ID { get; set; }

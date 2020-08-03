@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Threading;
 using System.IO;
-using Microsoft.VisualBasic;
-using TMS.Nbrb.Core.Helpers;
 using TMS.Nbrb.Core.Interfaces;
 
 namespace TMS.Nbrb.Core.Services
 {
+
+    /// <inheritdoc cref="IFileService">
     public class FileService : IFileService
     {
         public void WriteToFileAsync(string text)
         {
-            WriteAsync(text, Helpers.Constants.path);
+            WriteAsync(text, Helpers.Constants.FileName);
         }
 
         public void WriteToFileAsync(string text, string path)

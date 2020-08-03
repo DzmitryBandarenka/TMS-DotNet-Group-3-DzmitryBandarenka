@@ -1,15 +1,13 @@
 ﻿using Flurl;
 using Flurl.Http;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using TMS.Nbrb.Core.Interfaces;
 using TMS.Nbrb.Core.Models;
 using TMS.Nbrb.Core.Helpers;
-
 namespace TMS.Nbrb.Core.Services
 {
+    /// <inherindoc cref="IRequestService">
     public class RequestService : IRequestService
     {
         public async Task<IEnumerable <Currency>> GetAllCurreciesAsync()
@@ -27,6 +25,8 @@ namespace TMS.Nbrb.Core.Services
 
             return rate;
         }
+
+
         
     }
 }

@@ -4,8 +4,12 @@ using System.Text;
 
 namespace TMS.Nbrb.Core.Models
 {
+    /// <summary>
+    /// Курс.
+    /// </summary>
     public class Rates
     {
+        
         public int Cur_ID { get; set; }
         public DateTime Date { get; set; }
         public string Cur_Abbreviation { get; set; }

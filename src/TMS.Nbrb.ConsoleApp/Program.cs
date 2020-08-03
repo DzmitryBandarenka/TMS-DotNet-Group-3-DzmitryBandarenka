@@ -2,11 +2,14 @@
 using TMS.Nbrb.Core.Services;
 using TMS.Nbrb.Core.Interfaces;
 using Flurl.Http;
-using System.Dynamic;
+
 
 
 namespace TMS.Nbrb.ConsoleApp
 {
+    /// <summary>
+    /// Действия программы.
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
@@ -16,23 +19,28 @@ namespace TMS.Nbrb.ConsoleApp
             Console.WriteLine("Welcome user!!\n");
 
             while (true) {
-                ShowMenu();
+                Services.ShowMenu();
                 int.TryParse(Console.ReadLine(), out int userinput);
                 switch (userinput) {
                     case 1: {
                             try
                             {
-                                var data = requestService.GetAllCurreciesAsync().GetAwaiter().GetResult();
-                                foreach (var item in data)
-                                {
-                                    Console.WriteLine(item.Cur_ID + " " + item.Cur_Name + " " + item.Cur_Code + " " + item.Cur_Abbreviation);
-                                }
+
+                                    var data = requestService.GetAllCurreciesAsync().GetAwaiter().GetResult();
+                                    foreach (var item in data)
+                                    {
+                                        Console.WriteLine(item.Cur_ID + " " + item.Cur_Name + " " + item.Cur_Code + " " + item.Cur_Abbreviation);
+                                    }                                
                             }
                             catch (FlurlHttpTimeoutException)
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Failed to establish connection");
                                 Console.ResetColor();
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
                             }
                         }
                         break;
@@ -52,7 +60,7 @@ namespace TMS.Nbrb.ConsoleApp
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Failed to establish connection");
-                                Console.ResetColor();   
+                                Console.ResetColor();
                             }
                             catch (FlurlHttpException)
                             {
@@ -60,14 +68,17 @@ namespace TMS.Nbrb.ConsoleApp
                                 Console.WriteLine("Unknown code");
                                 Console.ResetColor();
                             }
+
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine(ex.Message);
+                                }
                             Console.ReadLine();
                         }
                         break;
                     case 3:
                         {
-                          
-
-                            try
+                             try
                             {
                                 Console.WriteLine("Enter amount:\n");
                                 decimal amount = Convert.ToDecimal(Console.ReadLine());
@@ -99,6 +110,10 @@ namespace TMS.Nbrb.ConsoleApp
                                 Console.WriteLine("Incorrect value entered");
                                 Console.ResetColor();
                             }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
 
                             Console.ReadLine();
                         }
@@ -119,13 +134,6 @@ namespace TMS.Nbrb.ConsoleApp
 
         }
 
-        public static void ShowMenu() {
-            
-            Console.WriteLine("Possible actions:\n");
-            Console.WriteLine("Click 1: Request all currincies");
-            Console.WriteLine("Click 2: Request rates from one currency and write to file");
-            Console.WriteLine("Click 3: Currency conversion into BYN and write to file");
-            Console.WriteLine("Click 4: Exit");
-        }
+
     }
 }

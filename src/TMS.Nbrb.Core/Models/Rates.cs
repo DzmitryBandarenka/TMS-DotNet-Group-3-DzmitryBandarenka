@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TMS.Nbrb.Core.Models
 {
+    /// <summary>
+    /// Курс.
+    /// </summary>
     public class Rates
     {
         public int Cur_ID { get; set; }

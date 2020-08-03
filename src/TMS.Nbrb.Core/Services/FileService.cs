@@ -1,27 +1,27 @@
 ﻿using System;
-using System.Text;
 using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 using TMS.Nbrb.Core.Interfaces;
 
 namespace TMS.Nbrb.Core.Services
 {
-
     /// <inheritdoc cref="IFileService">
     public class FileService : IFileService
     {
-        public void WriteToFileAsync(string text)
+        public async Task WriteToFileAsync(string text)
         {
-            WriteAsync(text, Helpers.Constants.FileName);
+            await WriteAsync(text, Helpers.Constants.FileName);
         }
 
-        public void WriteToFileAsync(string text, string path)
+        public async Task WriteToFileAsync(string text, string path)
         {
-                WriteAsync(text, path);
+            await WriteAsync(text, path);
         }
-        
-        private async void WriteAsync(string text, string path)
-        { 
-                try
+
+        private async Task WriteAsync(string text, string path)
+        {
+            try
             {
                 using (StreamWriter sw = new StreamWriter(path, true, Encoding.Default))
                 {

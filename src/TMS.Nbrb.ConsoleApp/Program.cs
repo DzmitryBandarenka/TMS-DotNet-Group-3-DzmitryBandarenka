@@ -1,9 +1,7 @@
-﻿using System;
-using TMS.Nbrb.Core.Services;
+﻿using Flurl.Http;
+using System;
 using TMS.Nbrb.Core.Interfaces;
-using Flurl.Http;
-
-
+using TMS.Nbrb.Core.Services;
 
 namespace TMS.Nbrb.ConsoleApp
 {
@@ -12,20 +10,23 @@ namespace TMS.Nbrb.ConsoleApp
     /// </summary>
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             IRequestService requestService = new RequestService();
             IFileService fileService = new FileService();
             Console.WriteLine("Welcome user!!\n");
 
-            while (true) {
+            while (true)
+            {
                 Services.ShowMenu();
                 int.TryParse(Console.ReadLine(), out int userinput);
-                switch (userinput) {
-                    case 1: {
+                switch (userinput)
+                {
+                    case 1:
+                        {
                             try
                             {
-                                Services.GetAllCurreciesAsync(requestService).GetAwaiter().GetResult();                             
+                                Services.GetAllCurreciesAsync(requestService).GetAwaiter().GetResult();
                             }
                             catch (FlurlHttpTimeoutException)
                             {
@@ -60,16 +61,16 @@ namespace TMS.Nbrb.ConsoleApp
                                 Console.ResetColor();
                             }
 
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine(ex.Message);
-                                }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
                             Console.ReadLine();
                         }
                         break;
                     case 3:
                         {
-                             try
+                            try
                             {
                                 Services.ShowConvertAsync(requestService, fileService).GetAwaiter().GetResult();
                             }
@@ -110,11 +111,7 @@ namespace TMS.Nbrb.ConsoleApp
                         }
                         break;
                 }
-
             }
-
         }
-
-
     }
 }

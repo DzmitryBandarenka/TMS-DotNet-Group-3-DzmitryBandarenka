@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TMS.Nbrb.Core.Models
 {
@@ -9,7 +7,6 @@ namespace TMS.Nbrb.Core.Models
     /// </summary>
     public class Rates
     {
-        
         public int Cur_ID { get; set; }
         public DateTime Date { get; set; }
         public string Cur_Abbreviation { get; set; }

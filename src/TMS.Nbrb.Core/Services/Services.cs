@@ -7,9 +7,6 @@ using TMS.Nbrb.Core.Services;
 public class Services
 
 {
-    IRequestService requestService = new RequestService();
-    IFileService fileService = new FileService();
-
     /// <summary>
     /// Показать меню.
     /// </summary>
@@ -23,4 +20,13 @@ public class Services
         Console.WriteLine("Click 4: Exit");
     }
 
+    public static async Task GetAllCurreciesAsync(IRequestService requestService)
+    {
+        var data = await requestService.GetAllCurreciesAsync();
+        foreach (var item in data)
+        {
+           Console.WriteLine(item.Cur_ID + " " + item.Cur_Name + " " + item.Cur_Code + " " + item.Cur_Abbreviation);
+        }
+       
+    }
 }

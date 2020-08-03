@@ -25,12 +25,7 @@ namespace TMS.Nbrb.ConsoleApp
                     case 1: {
                             try
                             {
-
-                                    var data = requestService.GetAllCurreciesAsync().GetAwaiter().GetResult();
-                                    foreach (var item in data)
-                                    {
-                                        Console.WriteLine(item.Cur_ID + " " + item.Cur_Name + " " + item.Cur_Code + " " + item.Cur_Abbreviation);
-                                    }                                
+                                Services.GetAllCurreciesAsync(requestService).GetAwaiter().GetResult();                             
                             }
                             catch (FlurlHttpTimeoutException)
                             {
